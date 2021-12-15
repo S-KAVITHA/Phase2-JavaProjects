@@ -1,10 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=US-ASCII"
-	pageEncoding="US-ASCII" errorPage="error.jsp"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@ page
 	import="java.io.*,java.util.*,java.sql.*, com.mysql.jdbc.Driver"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,37 +15,64 @@
 <body>
 
 
-	<%
-		String user = request.getParameter("username");
-		String repwd = request.getParameter("repassword");
-		String pwd = request.getParameter("password");
-		
-		if (user == null || "".equals(user) || pwd == null || "".equals(pwd) || repwd == null || "".equals(repwd)) {
-			throw new ServletException("Mandatory Input Missing");
-		}
-		
-		 
-		if (repwd.equals(pwd)) {}
-		else {
-			throw new ServletException("Password does not match");
-		}
-	%>
+	<c:if
+		test="${(empty param.username) or (empty param.password) or (empty param.repassword) }">
+
+		<c:redirect url="Createuser.jsp">
+			<c:param name="errMsg" value="Error: Mandatory Input Missing" />
+		</c:redirect>
+
+	</c:if>
 
 
-	<!-- sql:setDataSource tag -->
-	<sql:setDataSource var="db" driver="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/db_world" user="root" password="root" />
+	<c:if test="${param.repassword != param.password}">
+		<c:redirect url="Createuser.jsp">
+			<c:param name="errMsg" value="Error: Password Mismatch" />
+		</c:redirect>
 
-	<!-- sql:update tag to INSERT -->
-	<sql:update dataSource="${db}" var="count"> 
-	INSERT INTO userlogin VALUES ('${param.username}','${param.password}');  
-	</sql:update>
+	</c:if>
 
-	<%	
-		out.println("<h2>Account Creation Succesfull !!!</h2>");
-	%>
-	<br> 
+	<c:if
+		test="${(not empty param.username) or (not empty param.password) or (not empty param.repassword) }">
+		<!-- sql:setDataSource tag -->
+		<sql:setDataSource var="db" driver="com.mysql.jdbc.Driver"
+			url="jdbc:mysql://localhost:3306/db_world" user="root"
+			password="root" />
 
+		<sql:query dataSource="${db}" var="rs">  
+			SELECT * from userlogin  WHERE username="${param.username}" and password="${param.password}";  
+			
+	</sql:query>
+
+		<c:forEach var="table" items="${rs.rows}">
+			<c:set var="get_user" value="${table.username}" />
+			<c:set var="get_pwd" value="${table.password}" />
+			<td><c:out value="${get_user}" /></td>
+			<td><c:out value="${get_pwd}" /></td>
+
+			<c:if
+				test="${(get_user eq param.username) or (get_pwd eq param.password)}">
+				<c:redirect url="Createuser.jsp">
+					<c:param name="errMsg" value="Error: User Already exists" />
+				</c:redirect>
+			</c:if>
+		</c:forEach>
+
+
+		<c:if test="${rs.rowCount lt 1 }">
+
+			<!-- sql:update tag to INSERT -->
+			<sql:update dataSource="${db}" var="count"> 
+				INSERT INTO userlogin VALUES ('${param.username}','${param.password}');  
+			</sql:update>
+
+			<%
+				out.println("<font color=blue><h2>Congrats !!! Account Created Succesfully !!!</h2></font>");
+			%>
+			<br>
+		</c:if>
+
+	</c:if>
 
 
 </body>

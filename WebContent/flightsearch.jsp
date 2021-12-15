@@ -13,20 +13,42 @@
 <title>Insert title here</title>
 </head>
 <body>
+<head>
 
+<c:if test="${empty param.username or empty param.password}">
+	<c:redirect url="Flyawaylogin.jsp">
+		<c:param name="errMsg" value="Error: Mandatory Input Missing" />
+	</c:redirect>
+
+</c:if>
+
+
+<c:if
+	test="${(not empty param.username) and  (not empty param.password)}">
+
+	<!-- sql:setDataSource tag -->
+	<sql:setDataSource var="db" driver="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/db_world" user="root" password="root" />
+
+	<sql:query dataSource="${db}" var="rs">  
+			SELECT * from userlogin  WHERE username="${param.username}" and password="${param.password}";  
+			
+	</sql:query>
+	
+
+ 	<c:if test="${rs.rowCount gt 0 }">
+ 	<c:set scope="session" var="loginUser" value="${param.username}" />
+				<c:redirect url="searchinput.jsp" />
+	</c:if>
+	
+	<c:if test="${rs.rowCount lt 1 }">
+		<c:redirect url="Flyawaylogin.jsp">
+			<c:param name="errMsg" value="Error: Invalid Credentials" />
+		</c:redirect>
+	</c:if> 
+
+	</c:if>
 
 	
-	
-	<form action="flightdetails.jsp">
-		<h2>Search flights !!!</h2>
-		<br> Enter Date of travel : <input type="text" name="username">
-		<br> Enter Source City : <input type="password" name="password">
-		<br> Enter Destination City : <input type="password"
-			name="password"> <br> Enter Number of persons : <input
-			type="password" name="password"> <br> <input
-			type="Submit">
-	</form>
-
-
 </body>
 </html>

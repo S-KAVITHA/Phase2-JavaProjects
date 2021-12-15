@@ -24,14 +24,15 @@
 
 
 	<div align="center">
-		<form action="Flyawaylogin.jsp">
-			<h2>Welcome to Flyaway page !!!</h2>
+		<form action="flightsearch.jsp">
+			<font color="blue"><h2>Welcome to Flyaway.com!!! Login page !!!</h2></font>
 
 			<br> Enter User name <input type="text" name="username">
 			<br> <br> Enter password <input type="password"
 				name="password"> <br> <br>
 			<button>Login</button>
 			<br> <br>
+			
 		</form>
 
 		<form action="createuser.jsp">
@@ -44,55 +45,13 @@
 			<br> <br>
 		</form>
 
-
-	</div>
-
-	<%
-		String id = "";
-		String user_id = request.getParameter("username");
-		String pwd = request.getParameter("password");
-
-		if ((!(user_id == null || user_id.isEmpty())) || (!(user_id == null || user_id.isEmpty()))) {
-
-			String driverName = "com.mysql.jdbc.Driver";
-			String connectionUrl = "jdbc:mysql://localhost:3306/";
-			String dbName = "db_world";
-			String userId = "root";
-			String password = "root";
-			try {
-				Class.forName(driverName);
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			Connection connection = null;
-			Statement statement = null;
-			try {
-				connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
-				statement = connection.createStatement();
-
-				String sql = "SELECT * FROM userlogin WHERE username = '" + user_id + "' and password = '" + pwd
-						+ "'";
-				System.out.printf(sql);
-
-				ResultSet rs = statement.executeQuery(sql);
-
-				if (rs.next()) {
-					response.sendRedirect("flightsearch.jsp");
-
-				} else {
+	<centre> <strong><font color="red"><c:if test="${not empty param.errMsg}">
+            <c:out value="${param.errMsg}" />
+            </c:if></font></strong>
+     </center>
+            
+     	</div>
 	
-					out.println(("<strong><center><span style = 'color:red'>Invalid Credentials!!!</span></center></strong>"));
-	
-	
-		}
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-		}
-	%>
-
 
 	<%-- <!-- sql:setDataSource tag -->
 	<sql:setDataSource var="db" driver="com.mysql.jdbc.Driver"
