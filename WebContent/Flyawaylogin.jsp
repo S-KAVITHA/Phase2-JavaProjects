@@ -8,12 +8,6 @@
 
 
 
-<%@page import="java.sql.Statement"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.ResultSet"%>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,12 +29,12 @@
 			
 		</form>
 
-		<form action="createuser.jsp">
+		<form action="Createuser.jsp">
 			<button>Create Account</button>
 			<br> <br>
 		</form>
 
-		<form action="changepass.jsp">
+		<form action="Changepwd.jsp">
 			<button>Change Password</button>
 			<br> <br>
 		</form>

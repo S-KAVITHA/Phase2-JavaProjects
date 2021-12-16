@@ -40,7 +40,7 @@
 			password="root" />
 
 		<sql:query dataSource="${db}" var="rs">  
-			SELECT * from userlogin  WHERE username="${param.username}" and password="${param.password}";  
+			SELECT * from userlogin  WHERE username="${param.username}";  
 			
 	</sql:query>
 
@@ -50,8 +50,7 @@
 			<td><c:out value="${get_user}" /></td>
 			<td><c:out value="${get_pwd}" /></td>
 
-			<c:if
-				test="${(get_user eq param.username) or (get_pwd eq param.password)}">
+			<c:if test="${(get_user eq param.username)}">
 				<c:redirect url="Createuser.jsp">
 					<c:param name="errMsg" value="Error: User Already exists" />
 				</c:redirect>
@@ -66,10 +65,15 @@
 				INSERT INTO userlogin VALUES ('${param.username}','${param.password}');  
 			</sql:update>
 
-			<%
-				out.println("<font color=blue><h2>Congrats !!! Account Created Succesfully !!!</h2></font>");
-			%>
-			<br>
+
+			<centre> <strong><font color="blue"><h2>
+
+						<c:out value="${'Congrats !!! Account Created Succesfully !!!'}" />
+					</h2></font></strong>
+			</center>
+
+			<a href="Flyawaylogin.jsp"><h2>Click here to go back to
+					login page</h2></a> <br>
 		</c:if>
 
 	</c:if>
