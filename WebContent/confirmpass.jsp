@@ -22,8 +22,8 @@
 
 	</c:if>
 
-	<c:if test="${param.repassword eq param.password}">
-		<c:redirect url="Createuser.jsp">
+	<c:if test="${param.oldpass eq param.newpass}">
+		<c:redirect url="Changepwd.jsp">
 			<c:param name="errMsg" value="Error: Enter New Password" />
 		</c:redirect>
 
@@ -45,12 +45,11 @@
 		<c:forEach var="table" items="${rs.rows}">
 			<c:set var="get_user" value="${table.username}" />
 			<c:set var="get_pwd" value="${table.password}" />
-			<td><c:out value="${get_user}" /></td>
-			<td><c:out value="${get_pwd}" /></td>
+			
 
 			<c:if
-				test="${(get_user eq param.username) and (get_pwd != param.newpass)}">
-				<c:redirect url="Createuser.jsp">
+				test="${(get_user eq param.username) and (get_pwd != param.oldpass)}">
+				<c:redirect url="Changepwd.jsp">
 					<c:param name="errMsg" value="Error: Old Password doesnot match" />
 				</c:redirect>
 			</c:if>

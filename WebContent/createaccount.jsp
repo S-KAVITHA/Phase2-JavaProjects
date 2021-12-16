@@ -47,8 +47,7 @@
 		<c:forEach var="table" items="${rs.rows}">
 			<c:set var="get_user" value="${table.username}" />
 			<c:set var="get_pwd" value="${table.password}" />
-			<td><c:out value="${get_user}" /></td>
-			<td><c:out value="${get_pwd}" /></td>
+			
 
 			<c:if test="${(get_user eq param.username)}">
 				<c:redirect url="Createuser.jsp">

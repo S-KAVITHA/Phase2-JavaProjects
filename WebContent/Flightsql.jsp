@@ -17,63 +17,65 @@
 <body>
 
 
-<c:if test="${(empty param.srccity) or (empty param.destcity) or (empty param.traveldate) or (empty param.seatavail)}">
-   <h3>
-		<center>
-		
-		<strong><font color="red">Error: <%="Invalid Credentials"%></font><br>
-			<br> </strong></center>
-	</h3>
-	 <c:redirect url="searchinput.jsp"></c:redirect>
-</c:if>
+	<c:if
+		test="${(empty param.srccity) or (empty param.destcity) or (empty param.traveldate) or (empty param.seatavail)}">
+		<c:redirect url="searchinput.jsp">
+			<c:param name="errMsg" value="Error: Mandatory Input Missing" />
+		</c:redirect>
+	</c:if>
 
 
 
+	<c:if
+		test="${(not empty param.srccity) and (not empty param.destcity) and (not empty param.traveldate) and (not empty param.seatavail)}">
+		<!-- sql:setDataSource tag -->
+		<sql:setDataSource var="db" driver="com.mysql.jdbc.Driver"
+			url="jdbc:mysql://localhost:3306/db_world" user="root"
+			password="root" />
 
-<c:if test="${(not empty param.srccity) and (not empty param.destcity) and (not empty param.traveldate) and (not empty param.seatavail)}">
-    var1 is NOT empty or null.
- 
-	<!-- sql:setDataSource tag -->
-	<sql:setDataSource var="db" driver="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/db_world" user="root" password="root" />
-
-
-	<sql:query dataSource="${db}" var="rs">  
-
+		<sql:query dataSource="${db}" var="rs">  
 	SELECT * from flight where source_city = "${param.srccity}" and destination_city ="${param.destcity}" and date_of_travel = "${param.traveldate}" and seat_availibility >="${param.seatavail}" ; 
-	 ;
-
-</sql:query>
+	 	</sql:query>
 
 
-	<table border="2" width="100%">
-		<tr>
-			<th>Flight No</th>
-			<th>Airline Name</th>
-			<th>Price</th>
-			<th>Source City</th>
-			<th>Destination City</th>
-			<th>Departure Time</th>
-			<th>Arrival Time</th>
-			<th>Available Seats</th>
-			<th>Class</th>
-		</tr>
-		<c:forEach var="table" items="${rs.rows}">
+		<centre> <strong><font color="blue"><h2>
+
+					<c:out value="${' You can book flights here !!!'}" />
+				</h2></font></strong>
+		</center>
+
+
+		<table border="2" width="100%">
 			<tr>
-				<td><c:out value="${table.flight_no}" /></td>
-				<td><c:out value="${table.airline_name}" /></td>
-				<td><c:out value="${table.price}" /></td>
-				<td><c:out value="${table.source_city}" /></td>
-				<td><c:out value="${table.destination_city}" /></td>
-				<td><c:out value="${table.departure_time}" /></td>
-				<td><c:out value="${table.arrival_time}" /></td>
-				<td><c:out value="${table.seat_availibility}" /></td>
-				<td><c:out value="${table.flight_class}" /></td>
-
+				<th>Flight No</th>
+				<th>Airline Name</th>
+				<th>Price</th>
+				<th>Source City</th>
+				<th>Destination City</th>
+				<th>Departure Time</th>
+				<th>Arrival Time</th>
+				<th>Available Seats</th>
+				<th>Class</th>
 			</tr>
-		</c:forEach>
-	</table>
-</c:if>
+			<c:forEach var="table" items="${rs.rows}">
+				<tr>
+
+					<td><c:out value="${table.flight_no}" /></td>
+					<td><c:out value="${table.airline_name}" /></td>
+					<td><c:out value="${table.price}" /></td>
+					<td><c:out value="${table.source_city}" /></td>
+					<td><c:out value="${table.destination_city}" /></td>
+					<td><c:out value="${table.departure_time}" /></td>
+					<td><c:out value="${table.arrival_time}" /></td>
+					<td><c:out value="${table.seat_availibility}" /></td>
+					<td><c:out value="${table.flight_class}" /></td>
+					<td><a href="registerdetails.jsp?flightId=${table.flight_no}">Book
+							Flight</a></td>
+					</form>
+				</tr>
+			</c:forEach>
+		</table>
+	</c:if>
 
 
 </body>
