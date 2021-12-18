@@ -6,6 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,16 +14,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-<head>
 
-<c:if test="${(empty param.username) or (empty param.password)}">
-	<c:redirect url="Flyawayloggin.jsp">
-		<c:param name="errMsg" value="Error: Mandatory Input Missing" />
-	</c:redirect>
+	<c:if test="${(empty param.username) or (empty param.password)}">
+		<c:redirect url="Flyawaylogin.jsp">
+			<c:param name="errMsg" value="Error: Mandatory Input Missing" />
+		</c:redirect>
 
-</c:if>
+	</c:if>
 	
-<c:if test="${(not empty param.username) and  (not empty param.password)}">
+	<c:if test="${(not empty param.username) and  (not empty param.password)}">
 
 	<!-- sql:setDataSource tag -->
 	<sql:setDataSource var="db" driver="com.mysql.jdbc.Driver"
@@ -36,25 +36,31 @@
 
  	<c:if test="${rs.rowCount gt 0 }">
  	<c:set scope="session" var="loginUser" value="${param.username}" />
-				<c:redirect url="flightsearch.jsp" />		
 	</c:if>
 	
 	
 	<c:if test="${rs.rowCount lt 1 }">
-		<c:redirect url="Flyawayloggin.jsp">
+		<c:redirect url="Flyawaylogin.jsp">
 			<c:param name="errMsg" value="Error: Invalid Credentials" />
 		</c:redirect>
 	</c:if> 
 
 	</c:if>
-
-<c:out value="${param.username}"/><br>
-<c:out value="${param.password}"/><br>
-<a href="searchinput.jsp">Search Flights</a><br><br>
-	<a href="sessionlogout.jsp">Click here to logout</a><br>
 	
-
-
 	
+	<font color="blue"><h2>Welcome to Online Airline Reservation System!!! Home page !!!</h2></font>
+	<br>
+	
+	<font color="blue"><h3>Hello ${param.username} !!!</h3></font><br>
+	<br>
+	
+	<h4><a href="searchinput.jsp" style="color: blue">Search Flights</a></h4>
+	
+	
+	<h4><a href="sessionlogout.jsp" style="color:blue">Click here to logout</a></h4>
+	<br>
+
+
+
 </body>
 </html>

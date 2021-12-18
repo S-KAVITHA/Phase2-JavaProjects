@@ -17,7 +17,7 @@
 
 	<div align="center">
 		<form action="confirmpass.jsp">
-			<font color="blue"><h2>Create Your Account Here!!!</h2></font> <br>
+			<font color="blue"><h2>Change Your Password Here!!!</h2></font> <br>
 			Enter User name <input type="text" name="username"> <br><br> 
 			Enter old password <input type="password" name="oldpass"><br> <br> 
 			Enter new Password <input type="password" name="newpass"> <br> <br>

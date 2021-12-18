@@ -1,75 +1,113 @@
-<html>
-<head>
-  <title>Book Query</title>
-</head>
-<body>
-  <h1>Another E-Bookstore</h1>
-  <h3>Choose Author(s):</h3>
-  <form method="get">
-    <input type="checkbox" name="author" value="Tan Ah Teck">Tan
-    <input type="checkbox" name="author" value="Mohd Ali">Ali
-    <input type="checkbox" name="author" value="Kumar">Kumar
-    <input type="submit" value="Query">
-  </form>
- 
-  <%
-    String[] authors = request.getParameterValues("author");
-    if (authors != null) {
-  %>
-  <%@ page import = "java.sql.*" %>
-  <%
-      Connection conn = DriverManager.getConnection(
-          "jdbc:mysql://localhost:8888/ebookshop", "myuser", "xxxx"); // <== Check!
-      // Connection conn =
-      //    DriverManager.getConnection("jdbc:odbc:eshopODBC");  // Access
-      Statement stmt = conn.createStatement();
- 
-      String sqlStr = "SELECT * FROM books WHERE author IN (";
-      sqlStr += "'" + authors[0] + "'";  // First author
-      for (int i = 1; i < authors.length; ++i) {
-         sqlStr += ", '" + authors[i] + "'";  // Subsequent authors need a leading commas
-      }
-      sqlStr += ") AND qty > 0 ORDER BY author ASC, title ASC";
- 
-      // for debugging
-      System.out.println("Query statement is " + sqlStr);
-      ResultSet rset = stmt.executeQuery(sqlStr);
-  %>
-      <hr>
-      <form method="get" action="order.jsp">
-        <table border=1 cellpadding=5>
-          <tr>
-            <th>Order</th>
-            <th>Author</th>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Qty</th>
-          </tr>
-  <%
-      while (rset.next()) {
-        int id = rset.getInt("id");
-  %>
-          <tr>
-            <td><input type="checkbox" name="id" value="<%= id %>"></td>
-            <td><%= rset.getString("author") %></td>
-            <td><%= rset.getString("title") %></td>
-            <td>$<%= rset.getInt("price") %></td>
-            <td><%= rset.getInt("qty") %></td>
-          </tr>
-  <%
-      }
-  %>
-        </table>
-        <br>
-        <input type="submit" value="Order">
-        <input type="reset" value="Clear">
-      </form>
-      <a href="<%= request.getRequestURI() %>"><h3>Back</h3></a>
-  <%
-      rset.close();
-      stmt.close();
-      conn.close();
-    }
-  %>
-</body>
-</html>
+%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.*,com.digitalbd.*,AllLayout.*" %>
+
+
+<div class="ticket_print_section">
+	<div class="rs_shadow single_ticket" style="background-image: url('images/ticket_bg.jpg');">
+		<div class="ticket_header">
+			<h2>Bangladesh Railway Ticket</h2>
+		</div>
+		<div class="ticket_inner">
+			<div class="customer_part">
+				<h4>
+					<strong>Name of passenger</strong>
+					Md Rukon Shekh <%= request.getAttribute("ticket_id") %>
+				</h4>
+
+				<div class="ticket_col_1">
+					<table>
+						<tr>
+							<td>
+								<strong>Train Name</strong>
+								<span>Tista</span>
+								<strong>From</strong>
+								<span>Dhaka</span>
+								<strong>To</strong>
+								<span>Jamalpur</span>
+							</td>
+							<td class="wd_100px text_center">
+								<strong>Train No</strong>
+								Tista
+							</td>
+							<td class="wd_100px text_center">
+								<strong>Journey Date</strong>
+								10/20/205
+							</td>
+							<td class="wd_100px text_center">
+								<strong>Time</strong>
+								20AM
+							</td>
+						</tr>
+					</table>
+					<table>
+						<tr>
+							<td>
+								<strong>Class/Coach</strong>
+								<span>AC</span>
+							</td>
+							<td  class="wd_100px text_center">
+								<strong>Seat</strong>
+								305
+							</td>
+							<td  class="text_center">
+								<strong>Issue Date & Time</strong>
+								10/20/205
+							</td>
+							<td  class="wd_100px text_center">
+								<strong>Fare</strong>
+								350 Tk
+							</td>
+							<td width="90"  class="text_center">
+								<img class="qr_code" src="images/qr.png" alt="">
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="company_part">
+				<h4>
+					<strong>Name of passenger</strong>
+					Md Rukon Shekh
+				</h4>
+				<strong>Train Name</strong>
+				<span>Tista</span>
+				<strong>Journey</strong>
+				<span>Dhaka To Jamalpur</span>
+				<table>
+					<tr>
+						<td>
+							<strong>Seat</strong>
+							Tista
+						</td>
+						<td>
+							<strong>Date</strong>
+							1/25/25
+						</td>
+						<td>
+							<strong>Time</strong>
+							70:30AM
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<strong>Fare</strong>
+							150Tk
+						</td>
+						<td>
+							<strong>Issue Date</strong>
+							1/25/25
+						</td>
+						
+						<td>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="ticet_footer">
+			<span>Have a nice journey.</span>
+		</div>
+	</div>
+</div>

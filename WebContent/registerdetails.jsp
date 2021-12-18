@@ -16,15 +16,24 @@
 
 
 	<div align="center">
-		<form action="reviewdetails.jsp.jsp">
+		<form action="reviewdetails.jsp">
 			<font color="blue"><h2>Register Your Details Here!!!</h2></font> <br>
 			Enter User name <input type="text" name="username"> <br>
-			<br> Enter Full Name <input type="password" name="oldpass"><br>
-			<br> Enter Address <input type="password" name="newpass">
-			<br> <br> Enter Age <input type="password" name="newpass">
-			<br> <br> Enter Mobile <input type="password" name="newpass"> 
-			<br> <br> Enter Identity Card <input type="password" name="newpass">
-			<br> <br> Enter Country <input type="password" name="newpass"> <br> <br>
+			<br> Enter Full Name <input type="text" name="fullname"><br>
+			<br> Enter Address <input type="text" name="address">
+			<br> <br> Enter Age <input type="number" name="age">
+			<br> <br> Enter Mobile <input type="number" name="mobile"> 
+			<br> <br>  
+			Enter Identity Type  <select name="idcard">
+			<lablel>Enter Identity Type </lablel>
+				<option value="Adhar card">Adhar card</option>
+				<option value="SSN">SSN</option>
+				<option value="Passport">Passport</option>
+				<option value="Voter ID">Voter ID</option>
+				<option value="Driving license">Driving license</option>
+			</select> <br> <br> 
+			Enter Identity No <input type="text" name="idno"><br> <br>
+			Enter Country <input type="text" name="country"> <br> <br>
 			<button>Review</button>
 			<br> <br>
 		</form>

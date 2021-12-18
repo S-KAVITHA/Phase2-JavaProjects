@@ -6,8 +6,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,17 +14,13 @@
 </head>
 <body>
 
-
 	<div align="center">
-		<form action="flightsearch.jsp">
-			<font color="blue"><h2>Welcome to Flyaway.com!!! Login page !!!</h2></font>
-
-			<br> Enter User name <input type="text" name="username">
-			<br> <br> Enter password <input type="password"
-				name="password"> <br> <br>
+		<form action="loginhome.jsp">
+			<font color="blue"><h2>Welcome to Online Airline Reservation System!!! Login page !!!</h2></font>
+			<br> Enter User Name <input type="text" name="username">
+			<br> <br> Enter Password <input type="password" name="password"> <br> <br>
 			<button>Login</button>
 			<br> <br>
-			
 		</form>
 
 		<form action="Createuser.jsp">
@@ -46,32 +40,5 @@
             
      	</div>
 	
-
-	<%-- <!-- sql:setDataSource tag -->
-	<sql:setDataSource var="db" driver="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/db_world" user="root" password="root" />
-
-	<!-- sql:update tag to INSERT -->
-
-	<c:if test="${param.username != null and param.password != null}">
-
-		<sql:query dataSource="${db}" var="rs">  
-			SELECT * from userlogin  WHERE username="${param.username}" and password="${param.password}";  
-			
-	</sql:query>
-		<c:if test="${rs.rowsByINDEX[0][0] == 1}">
-		<c:redirect url = "flightsearch.jsp"> </c:redirect>
-		</c:if>
-		<c:if test="${rs.rowsByINDEX[0][0] == 0}">
-		<fieldset>
-			<caption>Error: </caption>
-			<font color="red">Invalid Credentials</font>
-		</fieldset>
-		</c:if>
-	</c:if> --%>
-
-
-
-
 </body>
 </html>

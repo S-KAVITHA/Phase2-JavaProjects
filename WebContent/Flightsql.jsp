@@ -17,6 +17,12 @@
 <body>
 
 
+	<c:set scope="session" var="datetravel" value="${param.traveldate}" />
+	<c:set scope="session" var="sourcecty" value="${param.srccity}" />
+	<c:set scope="session" var="destcty" value="${param.destcity}" />
+	<c:set scope="session" var="availseat" value="${param.seatavail}" />
+
+
 	<c:if
 		test="${(empty param.srccity) or (empty param.destcity) or (empty param.traveldate) or (empty param.seatavail)}">
 		<c:redirect url="searchinput.jsp">
@@ -40,7 +46,7 @@
 
 		<centre> <strong><font color="blue"><h2>
 
-					<c:out value="${' You can book flights here !!!'}" />
+					<c:out value="${'Book Your Flights Here !!!'}" />
 				</h2></font></strong>
 		</center>
 
@@ -69,6 +75,7 @@
 					<td><c:out value="${table.arrival_time}" /></td>
 					<td><c:out value="${table.seat_availibility}" /></td>
 					<td><c:out value="${table.flight_class}" /></td>
+					<c:set scope="session" var="flightnum" value="${table.flight_no}" />
 					<td><a href="registerdetails.jsp?flightId=${table.flight_no}">Book
 							Flight</a></td>
 					</form>
