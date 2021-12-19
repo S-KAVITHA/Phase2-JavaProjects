@@ -22,8 +22,33 @@
 			password="root" />
 
 <sql:update dataSource="${db}" var="count"> 
-				INSERT INTO flightbook VALUES ('${sessionScope.loginUser}','${sessionScope.flightnum}');  
+				INSERT INTO flightbook  (email_id,flight_no) VALUES ('${sessionScope.loginUser}','${sessionScope.flightnum}');  
 			</sql:update>
+			
+			
+			<font color="blue"><h2>Congrats Your Airline Booking is Succesfully Done !!!</h2></font><br>
+			
+<h4><pre class="tab14">User Name : <c:out value="${sessionScope.loginUser}"/>			         Full Name :<c:out value="${sessionScope.fullname}"/> </pre></h4>
+
+<h4><pre class="tab">Address : <c:out value="${sessionScope.address}"/>	          Age : <c:out value="${sessionScope.age}"/></pre></h4>
+
+<h4><pre class="tab20">Contact No : <c:out value="${sessionScope.mobile}"/> 			      ID Card : <c:out value="${sessionScope.idcard}"/></pre></h4>
+
+<h4><pre class="tab36">ID Number : <c:out value="${sessionScope.idnum}"/> 			          Country : <c:out value="${sessionScope.country}"/></pre></h4>
+
+<h4><pre class="tab14">Flight No : <c:out value="${sessionScope.flightnum}"/>			        Travel Date :<c:out value="${sessionScope.datetravel}"/> </pre></h4>
+
+<h4><pre class="tab">Source City : <c:out value="${sessionScope.sourcecty}"/>			        Destination City : <c:out value="${sessionScope.destcty}"/></pre></h4>
+
+<h4><pre class="tab20">Total Travelers : <c:out value="${sessionScope.availseat}"/><br>
+			
+<h4><a href="flightwelcome.jsp" style="color:blue">Go Back to Home Page</a></h4>
+	<br>
+
+<jsp:text>
+        Thank You for booking with us! Visit us again !!! 
+</jsp:text>
+
 
 </body>
 </html>

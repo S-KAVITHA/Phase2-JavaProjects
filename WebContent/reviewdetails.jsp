@@ -14,6 +14,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<c:set scope="session" var="fullname" value="${param.fullname}" />
+	<c:set scope="session" var="address" value="${param.address}" />
+	<c:set scope="session" var="age" value="${param.age}" />
+	<c:set scope="session" var="mobile" value="${param.mobile}" />
+	<c:set scope="session" var="idcard" value="${param.idcard}" />
+	<c:set scope="session" var="idnum" value="${param.idno}" />
+	<c:set scope="session" var="country" value="${param.country}" />
+
+
+
 <div align="Left">
 <font color="blue"><h2>Review Your Details Here !!!</h2></font><br>
 <h4><pre class="tab14">User Name : <c:out value="${param.username}"/>			         Full Name :<c:out value="${param.fullname}"/> </pre></h4>
@@ -41,5 +52,7 @@
 			<br> <br>
 		</form>
 </div>
+
+
 </body>
 </html>
