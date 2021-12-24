@@ -18,5 +18,10 @@
 	<classpathentry kind="lib" path="C:/Users/Pradeep Ramamoorthy/Downloads/Jar Files/Servlet_JSP/servlet-api.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Pradeep Ramamoorthy/Downloads/Jar Files/JDBC Jar files/com.mysql.jdbc_5.1.5.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Pradeep Ramamoorthy/Downloads/Jar Files/JDBC Jar files/mysql-connector-java-5.0.8-bin-g.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Pradeep Ramamoorthy/Downloads/tt/Jar Files/Servlet_JSP/jstl-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Pradeep Ramamoorthy/Downloads/tt/Jar Files/Servlet_JSP/jstl-standard.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Pradeep Ramamoorthy/Downloads/tt/Jar Files/Servlet_JSP/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Pradeep Ramamoorthy/Downloads/tt/Jar Files/JDBC Jar files/com.mysql.jdbc_5.1.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Pradeep Ramamoorthy/Downloads/tt/Jar Files/JDBC Jar files/mysql-connector-java-5.0.8-bin-g.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

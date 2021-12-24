@@ -18,8 +18,7 @@
     <servlet-name>prodserv</servlet-name>
     <url-pattern>/product</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
+  <servlet>
     <servlet-name>LoginCont</servlet-name>
     <servlet-class>advanced.java.projects.LoginController</servlet-class>
   </servlet>
@@ -27,6 +26,27 @@
     <servlet-name>LoginCont</servlet-name>
     <url-pattern>/LoginController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>Prodcoll</servlet-name>
+    <servlet-class>advanced.java.projects.StoreProduct</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Prodcoll</servlet-name>
+    <url-pattern>/productcollect</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+   <servlet>
+    <servlet-name>Prodcoll1</servlet-name>
+    <servlet-class>advanced.java.projects.ProductDisplay</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Prodcoll1</servlet-name>
+    <url-pattern>/productd</url-pattern>
+  </servlet-mapping>
+  
+  
   
   
   
