@@ -34,10 +34,7 @@
     <servlet-name>Prodcoll</servlet-name>
     <url-pattern>/productcollect</url-pattern>
   </servlet-mapping>
-  
-  
-  
-   <servlet>
+  <servlet>
     <servlet-name>Prodcoll1</servlet-name>
     <servlet-class>advanced.java.projects.ProductDisplay</servlet-class>
   </servlet>
@@ -45,9 +42,12 @@
     <servlet-name>Prodcoll1</servlet-name>
     <url-pattern>/productd</url-pattern>
   </servlet-mapping>
-  
-  
-  
-  
-  
+  <servlet>
+    <servlet-name>Prodhib</servlet-name>
+    <servlet-class>advanced.java.projects.Productprocess</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Prodhib</servlet-name>
+    <url-pattern>/producthib</url-pattern>
+  </servlet-mapping>
 </web-app>

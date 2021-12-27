@@ -4,7 +4,7 @@ public class Product {
 
 	String ProductId;
 	String Productdesc;
-	Float Price;
+	double Price;
 	String Expiry_date;
 	
 	
@@ -25,11 +25,11 @@ public class Product {
 	public void setProductdesc(String productdesc) {
 		Productdesc = productdesc;
 	}
-	public Float getPrice() {
+	public double getPrice() {
 		return Price;
 	}
-	public void setPrice(Float price) {
-		Price = price;
+	public void setPrice(double d) {
+		Price = d;
 	}
 	public String getExpiry_date() {
 		return Expiry_date;
@@ -38,11 +38,6 @@ public class Product {
 		Expiry_date = expiry_date;
 	}
 
-	@Override
-	public String toString() {
-		return "Product [ProductId=" + ProductId + ", Productdesc=" + Productdesc + ", Price=" + Price
-				+ ", Expiry_date=" + Expiry_date + "]";
-	}
 
 	
 

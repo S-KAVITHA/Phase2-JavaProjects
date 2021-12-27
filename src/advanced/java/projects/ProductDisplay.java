@@ -42,15 +42,15 @@ public class ProductDisplay extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		
 	      PrintWriter out = response.getWriter();
-	      out.println("hyy");
-/*	     out.println(session.getAttribute("productid"));
+	    
+	     out.println(session.getAttribute("productid"));
 	     out.print("<br/>");
 	     out.println(session.getAttribute("productdesc"));
 	     out.print("<br/>");
 	     out.println(session.getAttribute("price"));
 	     out.print("<br/>");
 	     out.println(session.getAttribute("Expiry_Date"));
-	      */
+	      
 	      
 	      
 	}
